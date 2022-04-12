@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>CDN example</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js" integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+<script>
+	const result=document.querySelector('.result');
+	const fetchPeople=async()=>{
+		try{
+			const {data}=await axios.get("/api/people");
+			result.innerHTML=data.data.map(person=>`<h5>${person.name}</h5>`);
+		}
+		catch(error){
+			result.innerHTML=`<div class="alert alert-danger">Error received with no data fetched: ${error}</div>`;
+		}
+	}
+	const btn=document.querySelector('#btn');
+	const input=document.querySelector('.form-input');
+	const formAlert=document.querySelector('.form-alert');
+	btn.addEventListener("submit", async(event)=>{
+		console.log(event);
+		const inputVal=input.value;
+		try{
+			const {data}=await axios.post('/api/people',{name:name});
+			const h5=document.createElement('h5');
+			h5.textContent=data.person;
+			result.appendChild(h5);	
+		}catch(err){
+			formAlert.textContent=err.response.data.message;
+		}
+		input.value='';
+	})
+</script>
+</body>
+</html>

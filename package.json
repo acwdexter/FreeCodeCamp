@@ -1,5 +1,5 @@
 {
-  "name": "acwdexter/FreeCodeCamp",
+  "name": "@acwdexter/FreeCodeCamp",
   "version": "1.0.0",
   "description": "goalkicker react js prof guide",
   "main": "index.js",
@@ -9,6 +9,9 @@
   },
   "author": "dexter",
   "license": "ISC",
+  "publishConfig": {
+   "@acwdexter:registry": "https://npm.pkg.github.com"
+  },
   "dependencies": {
     "eslint": "^8.10.0",
     "express": "^4.17.3",
